@@ -130,7 +130,7 @@ kubectl logs -f <container name>
 ### Login to Docker.io 
 May be required if the deployment hits errors about the site hitting image pull limits.
 
-#### Create Secret with Docker.io Credentials
+#### 1. Create Secret with Docker.io Credentials
 ```shell
 kubectl create secret docker-registry docker-io-secret \
   --docker-server=docker.io \
@@ -138,8 +138,18 @@ kubectl create secret docker-registry docker-io-secret \
   --docker-password=<docker password> \
   --docker-email=<docker email> 
 ```
+#### 2. Download confluent-platform-c3++.yaml and producer-app-data.yaml
+```shell
+wget $TUTORIAL_HOME/confluent-platform-c3++.yaml
+wget $TUTORIAL_HOME/producer-app-data.yaml
+```
 
-#### Modify confluent-platform-c3++.yaml
+#### 3. Modify confluent-platform-c3++.yaml and producer-app-data.yaml
+Add the following to all the image sections
+```yaml
+pullSecretRef:
+  - docker-io-secret
+```
 ##### Before
 ```yaml
 apiVersion: platform.confluent.io/v1beta1
@@ -178,3 +188,8 @@ spec:
       url: http://controlcenter.confluent.svc.cluster.local:9090
 ```
 
+#### 4. Deploy the updated confluent-platform-c3++.yaml and producer-app-data.yaml
+```shell
+kubectl apply -f confluent-platform-c3++.yaml
+kubectl apply -f producer-app-data.yaml
+```

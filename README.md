@@ -7,7 +7,7 @@
 
 ### Get files
 ```shell
-git clone https://github.com/cleeistaken/confluent-platform-k8s-testgin.git
+git clone https://github.com/cleeistaken/confluent-platform-k8s-testing.git
 ```
 
 ### Required vSphere Steps

@@ -1,8 +1,8 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  name: cp-vks
-  namespace: cp-ns
+  name: confluent-vks
+  namespace: modern-apps
 spec:
   clusterNetwork:
     services:
@@ -26,7 +26,7 @@ spec:
           variables:
             overrides:
             - name: vmClass
-              value: cp-vm-class
+              value: vks-vm-class
             - name: node
               value:
                 labels:
@@ -40,7 +40,7 @@ spec:
           variables:
             overrides:
             - name: vmClass
-              value: cp-vm-class
+              value: vks-vm-class
             - name: node
               value:
                 labels:
@@ -54,7 +54,7 @@ spec:
           variables:
             overrides:
             - name: vmClass
-              value: cp-vm-class
+              value: vks-vm-class
             - name: node
               value:
                 labels:
@@ -68,7 +68,7 @@ spec:
           variables:
             overrides:
             - name: vmClass
-              value: cp-vm-class
+              value: vks-vm-class
             - name: node
               value:
                 labels:
